@@ -78,7 +78,7 @@ class ZKLib {
               
                 try{
                     await this.zklibTcp.connect();
-                    console.log('ok tcp')
+                    //console.log('ok tcp')
                 }catch(err){
                     throw err;
                 }
