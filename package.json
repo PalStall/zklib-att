@@ -1,7 +1,7 @@
 {
-  "name": "zklib-js",
-  "version": "1.3.3",
-  "description": "JavaScript module for ZKLib biometric devices",
+  "name": "zklib-att",
+  "version": "1.0.0",
+  "description": "JavaScript module for ZKLib biometric devices (updated)",
   "main": "zklib.js",
   "scripts": {
     "test": "node test"
