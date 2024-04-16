@@ -152,6 +152,7 @@ module.exports.decodeRecordData40 = (recordData)=>{
         .split('\0')
         .shift(),
         recordTime: parseTimeToDate(recordData.readUInt32LE(27)).toString(),
+        type: recordData.readUIntLE(31, 1),
       }
       return record
 }
@@ -159,7 +160,8 @@ module.exports.decodeRecordData40 = (recordData)=>{
 module.exports.decodeRecordData16 = (recordData)=>{
     const record = {
         deviceUserId: recordData.readUIntLE(0, 2),
-        recordTime: parseTimeToDate(recordData.readUInt32LE(4))
+        recordTime: parseTimeToDate(recordData.readUInt32LE(4)),
+        type: recordData.readUIntLE(31, 1),
     }
     return record
 }
@@ -167,7 +169,8 @@ module.exports.decodeRecordData16 = (recordData)=>{
 module.exports.decodeRecordRealTimeLog18 = (recordData)=>{
     const userId = recordData.readUIntLE(8,1)
     const attTime = parseHexToTime(recordData.subarray(12,18))
-    return {userId , attTime}
+    const type = recordData.readUIntLE(31, 1)
+    return {userId , attTime, type}
 }
 
 module.exports.decodeRecordRealTimeLog52 =(recordData)=>{
@@ -183,7 +186,9 @@ module.exports.decodeRecordRealTimeLog52 =(recordData)=>{
 
   const attTime = parseHexToTime(recvData.subarray(26,26+6))
 
-  return { userId, attTime}
+  const type = recordData.readUIntLE(31, 1)
+
+  return { userId, attTime, type}
 
 }
 
